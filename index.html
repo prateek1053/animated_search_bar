@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Search Bar</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+	<div class="mid_container">
+<div class="search">
+	<div class="icon">
+	</div>
+	<div class="input">
+		<input type="text" name="" id="text" placeholder="Search laptop">
+	</div>
+	<span class="cross"></span>
+</div>
+<ul></ul>
+</div>
+
+<script type="text/javascript">
+	var icon = document.querySelector(".icon");
+	var search = document.querySelector(".search");
+	var cross = document.querySelector(".cross");
+	var text = document.getElementById("text");
+	var content = document.querySelector('ul');
+	icon.onclick = function() {
+		search.classList.toggle("active");
+	}
+	cross.onclick = function()
+	{
+		search.classList.toggle("active");
+		content.style.display ="none";
+		text.value ="";
+
+	}
+	const laptop = [
+		{url:"https://www.apple.com/in/mac", name:"Apple Macbook"},
+		{url:"https://www.asus.com/in/", name:"Asus"},
+		{url:"https://www.samsung.com/us/galaxybooks/", name:"Samsung"},
+		{url:"https://www.lenovo.com/in/en", name:"Lenovo"},
+		{url:"https://www.mi.com/in/mi-notebook-14/", name:"MI NoteBook"},
+
+	]
+
+         search.addEventListener("input", function(e) {
+         content.style.display ="block";
+           let laptopArray = [];
+           
+           if(e.target.value){
+         
+               	laptopArray = laptop.filter(function(fruit) {
+         				return fruit.name.toLowerCase().includes(e.target.value);
+         			});
+         
+               laptopArray = laptopArray.map(function(fruit)
+         			{
+         			    return "<li><a href="+fruit.url+ " target='_blank'>"+ fruit.name+"</a></li>";
+         				//return "<li>"+fruit.name+"</li>";
+         			});
+           }
+           showlaptopArray(laptopArray);
+         });
+         
+         function showlaptopArray(laptopArray){
+           const html = !laptopArray.length ? '' : laptopArray.join('');
+           content.innerHTML = html;
+         }
+
+       
+</script>
+</body>
+</html>
